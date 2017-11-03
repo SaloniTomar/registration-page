@@ -1,0 +1,52 @@
+.App-header {
+  background-color: black;
+  height: 150px;
+  padding: 20px;
+  color:black;
+}
+
+/* .container{
+  display: 'flex';
+  justify-content: 'center';
+  background-color: white;
+  height:auto;
+  width: auto;
+  padding: 10px;
+  color: black;
+  border: black;
+  margin: 5%;
+} */
+
+.error{
+  color:red;
+}
+.home{
+  position: absolute;
+  top:2%;
+  right:5%;
+}
+
+/* .firstElement{
+  position: relative;
+  left:2%;
+  top:2%;
+  font-size: 20px;
+}
+
+.firstElementInput{
+  position: absolute;
+  left:19%;
+  font-size: 20px;
+}
+
+.secondElement{
+  position: absolute;
+  left:45%;
+  font-size: 20px;
+}
+
+.secondElementInput{
+  position: absolute;
+  left: 52%;
+  font-size: 20px;
+} */
