@@ -15,22 +15,12 @@ class App extends Component {
       errorFirstName:'',
       errorLastName:''
     }
-    this.handleInputChange=this.handleInputChange.bind(this);
     this.validateForm=this.validateForm.bind(this);
-    this.validateName=this.validateName.bind(this);
+    this.validateVal=this.validateVal.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
   history = createBrowserHistory();
-
-  handleInputChange(event) {
-    this.setState({ 
-      [event.target.name]: event.target.value
-     },
-       () => {
-      localStorage.setItem('formData', JSON.stringify(this.state)); 
-    });
-  }
 
   onChange(e) {
     const validName=/^[a-zA-z]+$/;
@@ -43,40 +33,25 @@ class App extends Component {
       localStorage.setItem('formData', JSON.stringify(this.state)); 
     });
 
-    var errorField='error'+fieldName;
-    if(!validName.test(fieldVal)){
-       this.setState({
-       [errorField]: 'Enter valid values'
-      });
-    }
-    else{
-      this.setState({
-        [errorField]: ''
-       });
-    }
+    this.validateVal(fieldName, fieldVal);
   }
 
-  validateName(fieldName){
-    const validName=/^[a-zA-z]+$/;
-    var fieldVal = this.state[fieldName];
+  validateVal(fieldName, fieldVal){
+    var validVal=/^[a-zA-Z ]+$/;
     var errorField='error'+fieldName;
-    if(!validName.test(fieldVal)){
-       this.setState({
-       [errorField]: 'Enter valid values'
-      });
-      return false;
+    if(!validVal.test(fieldVal) || fieldVal===' '){
+        this.setState({[errorField]: 'Enter valid values'});
+        return false;
     }
     else{
-      this.setState({
-        [errorField]: ''
-       });
-       return true;
-    }   
+        this.setState({ [errorField]: ''});
+        return true;
+    }
   }
 
   validateForm(e) {
-    var check1 = this.validateName('FirstName');
-    var check2 = this.validateName('LastName');
+    var check1 = this.validateVal('FirstName', this.state.FirstName);
+    var check2 = this.validateVal('LastName', this.state.LastName);
 
     if(check1 && check2){
       this.history.push("/details");
